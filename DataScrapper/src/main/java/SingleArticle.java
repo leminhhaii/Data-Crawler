@@ -12,8 +12,10 @@ public class SingleArticle {
     private final String creationDate;
     private final String content;
     private final List<String> referenceLinks;
+    private final String pictureLink;
 
-    public SingleArticle(String websiteSource, String type, String title, String category, String author, String link, String creationDate, String content, List<String> referenceLinks) {
+
+    public SingleArticle(String websiteSource, String type, String title, String category, String author, String link, String creationDate, String content, List<String> referenceLinks, String pictureLink) {
         this.websiteSource = websiteSource;
         this.type = type;
         this.title = title;
@@ -23,6 +25,12 @@ public class SingleArticle {
         this.creationDate = creationDate;
         this.content = content;
         this.referenceLinks = referenceLinks;
+        this.pictureLink = pictureLink;
+    }
+
+
+    public String getPictureLink() {
+        return pictureLink;
     }
 
     public String getWebsiteSource() {

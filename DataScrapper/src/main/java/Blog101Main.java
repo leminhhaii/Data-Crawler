@@ -19,10 +19,12 @@ public class Blog101Main {
         Elements nextElements = document.select("a.next.page-numbers");
         while (!nextElements.attr("abs:href").equals("https://101blockchains.com/blog/page/49/")) {
             Elements articles = document.select("div.col-md-6 > article");
+
             System.out.println(nextElements.attr("abs:href"));
             for (Element article : articles) {
                 String articlelink = article.select("h2 > a").attr("href");
-                SingleArticle blog = Blog.getSingleArticleBlog101(articlelink);
+                String pictureLink = article.getElementsByTag("img").attr("data-lazy-src");
+                SingleArticle blog = Blog.getSingleArticleBlog101(articlelink, pictureLink);
                 list.add(blog);
             }
             String nextPage = nextElements.attr("abs:href");

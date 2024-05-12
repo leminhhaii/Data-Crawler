@@ -8,11 +8,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BCNArticle implements ArticleInformation{
+public class BCNArticle  implements ArticleInformation {
     private final String url;
-
-    public String getUrl() {
-        return url;
+    private final String pictureLink;
+    public BCNArticle(String url, String pictureLink) {
+        this.url = url;
+        this.pictureLink = pictureLink;
     }
 
     @Override
@@ -28,10 +29,6 @@ public class BCNArticle implements ArticleInformation{
             return type.text();
         }
         return null;
-    }
-
-    public BCNArticle(String url) {
-        this.url = url;
     }
 
     @Override
@@ -52,7 +49,7 @@ public class BCNArticle implements ArticleInformation{
         StringBuilder categories = new StringBuilder();
 
         for (Element link : links) {
-            if (categories.length() > 0) {
+            if (!categories.isEmpty()) {
                 categories.append(", ");
             }
             categories.append(link.text());

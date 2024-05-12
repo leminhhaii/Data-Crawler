@@ -11,9 +11,11 @@ import java.util.List;
 
 public class CNArticle implements ArticleInformation{
     public final String url;
+    public final String pictureLink;
 
-    public CNArticle(String url) {
+    public CNArticle(String url, String pictureLink) {
         this.url = url;
+        this.pictureLink = pictureLink;
     }
 
     public String getUrl() {

@@ -11,10 +11,13 @@ import java.util.List;
 
 public class Blog101Article implements ArticleInformation {
     private final String url;
+    public final String pictureLink;
 
-    public Blog101Article(String url) {
+    public Blog101Article(String url, String pictureLink) {
         this.url = url;
+        this.pictureLink = pictureLink;
     }
+
     @Override
     public Elements createFile(String url) throws IOException {
         Document document = Jsoup.connect(url).get();

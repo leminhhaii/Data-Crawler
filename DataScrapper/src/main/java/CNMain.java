@@ -18,13 +18,14 @@ public class CNMain {
         Document document = Jsoup.connect(baseUrl).get();
         Elements nextElements = document.select("a.next.page-numbers");
 
-        while (!nextElements.attr("href").equals("https://cryptonews.com/news/page/100/")) {
+        while (!nextElements.attr("href").equals("https://cryptonews.com/news/page/3/")) {
             Elements elements = document.getElementsByClass("col-lg-3 d-flex");
             System.out.println(nextElements.attr("href"));
 
             for (Element element : elements) {
                 String link = element.select("div.news-one-title > a").attr("href");
-                SingleArticle blog = Blog.getSingleArticleCN(link);
+                String pictureLink = element.getElementsByTag("img").attr("src");
+                SingleArticle blog = Blog.getSingleArticleCN(link, pictureLink);
                 if (blog != null) {
                     list.add(blog);
                 }
