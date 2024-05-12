@@ -1,3 +1,6 @@
+package Crawler.CN;
+
+import Crawler.Blog;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jsoup.Jsoup;
@@ -9,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import Crawler.SingleArticle;
 
 public class CNMain {
     public static void main(String[] args) throws IOException {
@@ -37,7 +41,7 @@ public class CNMain {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(list);
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/dataCN.json"), true))) {
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/DATA/dataCN.json"), true))) {
             writer.println(json);
         }
     }

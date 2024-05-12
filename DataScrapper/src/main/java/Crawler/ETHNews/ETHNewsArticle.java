@@ -1,3 +1,6 @@
+package Crawler.ETHNews;
+
+import Crawler.ArticleInformation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ETHNewsArticle implements ArticleInformation{
+public class ETHNewsArticle implements ArticleInformation {
     private final String url;
     private final String pictureLink;
 

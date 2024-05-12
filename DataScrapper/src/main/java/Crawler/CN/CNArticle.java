@@ -1,3 +1,6 @@
+package Crawler.CN;
+
+import Crawler.ArticleInformation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CNArticle implements ArticleInformation{
+public class CNArticle implements ArticleInformation {
     public final String url;
     public final String pictureLink;
 

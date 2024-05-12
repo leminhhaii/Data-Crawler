@@ -1,3 +1,7 @@
+package Crawler.BLog101;
+
+import Crawler.Blog;
+import Crawler.SingleArticle;
 import com.google.gson.GsonBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -36,7 +40,7 @@ public class Blog101Main {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(list);
 
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(new File("D:/HUST/20232/OOP/project/DataScrapper/data101.json"), true))) {
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(new File("D:/HUST/20232/OOP/project/DataScrapper/DATA/data101.json"), true))) {
             writer.println(json);
         }
     }

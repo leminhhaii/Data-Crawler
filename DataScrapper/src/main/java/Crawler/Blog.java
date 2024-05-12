@@ -1,3 +1,11 @@
+package Crawler;
+
+import Crawler.BCN.BCNArticle;
+import Crawler.BLog101.Blog101Article;
+import Crawler.CN.CNArticle;
+import Crawler.ETHNews.ETHNewsArticle;
+import Crawler.PotatoNews.PotatoNewsArticle;
+
 import java.io.IOException;
 import java.util.List;
 

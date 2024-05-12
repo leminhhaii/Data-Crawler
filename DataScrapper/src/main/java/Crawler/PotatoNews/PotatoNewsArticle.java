@@ -1,3 +1,6 @@
+package Crawler.PotatoNews;
+
+import Crawler.ArticleInformation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PotatoNewsArticle implements ArticleInformation{
+public class PotatoNewsArticle implements ArticleInformation {
     private final String url;
     private final String pictureLink;
 

@@ -1,3 +1,7 @@
+package Crawler.BCN;
+
+import Crawler.Blog;
+import Crawler.SingleArticle;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jsoup.Jsoup;
@@ -37,7 +41,7 @@ public class BCNMain {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(abcd);
 
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/dataBCN.json"), true))){
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/DATA/dataBCN.json"), true))){
             writer.println(json);
         }
     }
