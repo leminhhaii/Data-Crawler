@@ -27,7 +27,7 @@ public class PotatoNewsMain {
             System.out.println(url);
             for (Element element : elements) {
                 String articlelink = element.select("h3 > a").attr("href");
-                String pictureLink = "https://cdn.shortpixel.ai/spai/w_288+q_lossless+ret_img+to_webp/https://cryptopotato.com/wp-content/uploads/thumbs/Bitcoin_Green_MW-3jrsdtahj1jw125et4wiyy.jpg";
+                String pictureLink = element.getElementsByTag("img").attr("src");;
 
                 SingleArticle blog = Blog.getSingleArticlePotatoNews(articlelink, pictureLink);
                 if (blog != null) {

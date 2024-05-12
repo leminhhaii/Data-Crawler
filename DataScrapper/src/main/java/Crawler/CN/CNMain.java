@@ -22,7 +22,7 @@ public class CNMain {
         Document document = Jsoup.connect(baseUrl).get();
         Elements nextElements = document.select("a.next.page-numbers");
 
-        while (!nextElements.attr("href").equals("https://cryptonews.com/news/page/3/")) {
+        while (!nextElements.attr("href").equals("https://cryptonews.com/news/page/100/")) {
             Elements elements = document.getElementsByClass("col-lg-3 d-flex");
             System.out.println(nextElements.attr("href"));
 

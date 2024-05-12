@@ -8,8 +8,13 @@ import org.jsoup.select.Elements;
 
 import javax.print.Doc;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PotatoNewsArticle implements ArticleInformation {
     private final String url;
@@ -101,5 +106,32 @@ public class PotatoNewsArticle implements ArticleInformation {
             referenceLinks.add(refs);
         }
         return referenceLinks;
+    }
+
+    public String getPictureLink() {
+        String trimmedLinks = pictureLink.substring(pictureLink.indexOf(",") + 1);
+        byte[] decodedBytes = Base64.getDecoder().decode(trimmedLinks);
+        String svgContent = new String(decodedBytes);
+        return extractImageLinkFromSVG(svgContent);
+    }
+    public static String extractImageLinkFromSVG(String svgCode) {
+        Pattern pattern = Pattern.compile("data-u=\"(.*?)\"");
+        Matcher matcher = pattern.matcher(svgCode);
+
+        if (matcher.find()) {
+            String encodedImageLink = matcher.group(1);
+            return decodeURL(encodedImageLink);
+        }
+
+        return null;
+    }
+
+    public static String decodeURL(String encodedURL) {
+        try {
+            return URLDecoder.decode(encodedURL, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

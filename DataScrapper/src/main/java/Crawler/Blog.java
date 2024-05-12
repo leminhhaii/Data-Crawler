@@ -100,9 +100,10 @@ public class Blog {
         String type = blogs.getType();
         String category = blogs.getCategory();
         List<String> referenceLink = blogs.getReference();
+        String picturelink = blogs.getPictureLink();
 
-        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & pictureLink != null) {
-            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, pictureLink);
+        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & picturelink != null) {
+            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, picturelink);
         }
         return null;
     }
