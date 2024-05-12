@@ -19,7 +19,7 @@ public class ETHNewsMain {
     public static void main(String[] args) throws IOException {
         List<SingleArticle> articleList = new ArrayList<>();
 
-        for (int i = 1; i < 200; i++) {
+        for (int i = 1; i < 140; i++) {
             String url = "https://www.ethnews.com/category/news/page/" + i + "/";
             Document doc = Jsoup.connect(url).get();
             Elements elements = doc.select(".tdb_module_loop.td_module_wrap.td-animation-stack.td-cpt-post");
