@@ -109,10 +109,14 @@ public class PotatoNewsArticle implements ArticleInformation {
     }
 
     public String getPictureLink() {
-        String trimmedLinks = pictureLink.substring(pictureLink.indexOf(",") + 1);
-        byte[] decodedBytes = Base64.getDecoder().decode(trimmedLinks);
-        String svgContent = new String(decodedBytes);
-        return extractImageLinkFromSVG(svgContent);
+        if (pictureLink.contains("https://")) {
+            return pictureLink;
+        } else {
+            String trimmedLinks = pictureLink.substring(pictureLink.indexOf(",") + 1);
+            byte[] decodedBytes = Base64.getDecoder().decode(trimmedLinks);
+            String svgContent = new String(decodedBytes);
+            return extractImageLinkFromSVG(svgContent);
+        }
     }
     public static String extractImageLinkFromSVG(String svgCode) {
         Pattern pattern = Pattern.compile("data-u=\"(.*?)\"");
