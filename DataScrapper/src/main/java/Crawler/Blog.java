@@ -12,7 +12,6 @@ import java.util.List;
 public class Blog {
     public final String url;
 
-
     public final String pictureLink;
 
     public Blog(String url, String pictureLink) {
@@ -22,88 +21,41 @@ public class Blog {
 
     public static SingleArticle getSingleArticleBlog101(String url, String pictureLink) throws IOException {
         Blog101Article blogs = new Blog101Article(url, pictureLink);
-
-        String creationDate = blogs.getCreationDate();
-        String title = blogs.getTitle();
-        String author = blogs.getAuthor();
-        String content = blogs.getContent();
-        String websiteSource = blogs.getWebsiteSource();
-        String type = blogs.getType();
-        String category = blogs.getCategory();
-        List<String> referenceLink = blogs.getReference();
-
-        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & pictureLink != null) {
-            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, pictureLink);
-        }
-        return null;
+        return getSingleArticle(blogs);
     }
     public static SingleArticle getSingleArticleBCN(String url, String pictureLink) throws IOException {
         BCNArticle blogs = new BCNArticle(url, pictureLink);
-
-        String creationDate = blogs.getCreationDate();
-        String title = blogs.getTitle();
-        String author = blogs.getAuthor();
-        String content = blogs.getContent();
-        String websiteSource = blogs.getWebsiteSource();
-        String type = blogs.getType();
-        String category = blogs.getCategory();
-        List<String> referenceLink = blogs.getReference();
-
-        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & pictureLink != null) {
-            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, pictureLink);
-        }
-        return null;
+        return getSingleArticle(blogs);
     }
     public static SingleArticle getSingleArticleCN(String url, String pictureLink) throws IOException {
         CNArticle blogs = new CNArticle(url, pictureLink);
-
-        String creationDate = blogs.getCreationDate();
-        String title = blogs.getTitle();
-        String author = blogs.getAuthor();
-        String content = blogs.getContent();
-        String websiteSource = blogs.getWebsiteSource();
-        String type = blogs.getType();
-        String category = blogs.getCategory();
-        List<String> referenceLink = blogs.getReference();
-
-        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & pictureLink != null) {
-            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, pictureLink);
-        }
-        return null;
+        return getSingleArticle(blogs);
     }
     public static SingleArticle getSingleArticleETHNews(String url, String pictureLink) throws IOException {
-        ETHNewsArticle blogs = new ETHNewsArticle(url, pictureLink);
-
-        String creationDate = blogs.getCreationDate();
-        String title = blogs.getTitle();
-        String author = blogs.getAuthor();
-        String content = blogs.getContent();
-        String websiteSource = blogs.getWebsiteSource();
-        String type = blogs.getType();
-        String category = blogs.getCategory();
-        List<String> referenceLink = blogs.getReference();
-
-        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & pictureLink != null) {
-            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, pictureLink);
-        }
-        return null;
+        Article blogs = new ETHNewsArticle(url, pictureLink);
+        return getSingleArticle(blogs);
     }
 
     public static SingleArticle getSingleArticlePotatoNews(String url, String pictureLink) throws IOException {
         PotatoNewsArticle blogs = new PotatoNewsArticle(url, pictureLink);
+        return getSingleArticle(blogs);
+    }
 
-        String creationDate = blogs.getCreationDate();
-        String title = blogs.getTitle();
-        String author = blogs.getAuthor();
-        String content = blogs.getContent();
-        String websiteSource = blogs.getWebsiteSource();
-        String type = blogs.getType();
-        String category = blogs.getCategory();
-        List<String> referenceLink = blogs.getReference();
-        String picturelink = blogs.getPictureLink();
+    public static SingleArticle getSingleArticle(Article article) throws IOException {
 
-        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & picturelink != null) {
-            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, picturelink);
+        String url = article.getUrl();
+        String creationDate = article.getCreationDate();
+        String title = article.getTitle();
+        String author = article.getAuthor();
+        String content = article.getContent();
+        String websiteSource = article.getWebsiteSource();
+        String type = article.getType();
+        String category = article.getCategory();
+        List<String> referenceLink = article.getReference();
+        String pictureLink = article.getPicture();
+
+        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & pictureLink != null) {
+            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, pictureLink);
         }
         return null;
     }

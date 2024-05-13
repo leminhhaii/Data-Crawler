@@ -1,6 +1,6 @@
 package Crawler.PotatoNews;
 
-import Crawler.ArticleInformation;
+import Crawler.Article;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,18 +16,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PotatoNewsArticle implements ArticleInformation {
-    private final String url;
-    private final String pictureLink;
-
+public class PotatoNewsArticle extends Article {
     public PotatoNewsArticle(String url, String pictureLink) {
-        this.url = url;
-        this.pictureLink = pictureLink;
-    }
-
-    @Override
-    public Elements createFile(String url) throws IOException {
-        return null;
+        super(url, pictureLink);
     }
 
     public Document getArticleDoc(String url) throws IOException{
@@ -36,7 +27,7 @@ public class PotatoNewsArticle implements ArticleInformation {
 
     @Override
     public String getCategory() throws IOException {
-        Document articleDoc = getArticleDoc(url);
+        Document articleDoc = getArticleDoc(getUrl());
         Elements fullCategory = articleDoc.select("a[rel=tag]");
         String category = "";
         if (fullCategory.isEmpty()) {
@@ -53,20 +44,20 @@ public class PotatoNewsArticle implements ArticleInformation {
 
     @Override
     public String getAuthor() throws IOException {
-        Document articleDoc = getArticleDoc(url);
+        Document articleDoc = getArticleDoc(getUrl());
         return articleDoc.select(".entry-user").text().replace("Author: ", "");
     }
 
     @Override
     public String getCreationDate() throws IOException {
-        Document articleDoc = getArticleDoc(url);
+        Document articleDoc = getArticleDoc(getUrl());
         String tempDate = articleDoc.select(".last-modified-timestamp").text();
         return tempDate.substring(0, tempDate.indexOf("@")).trim();
     }
 
     @Override
     public String getContent() throws IOException {
-        Document articleDoc = getArticleDoc(url);
+        Document articleDoc = getArticleDoc(getUrl());
         Elements articleContent = articleDoc.getElementsByClass("coincodex-content").select("p");
         String content = "";
 
@@ -79,7 +70,7 @@ public class PotatoNewsArticle implements ArticleInformation {
 
     @Override
     public String getTitle() throws IOException {
-        Document articleDoc = getArticleDoc(url);
+        Document articleDoc = getArticleDoc(getUrl());
         return articleDoc.getElementsByClass("page-title").text();
     }
 
@@ -96,7 +87,7 @@ public class PotatoNewsArticle implements ArticleInformation {
 
     @Override
     public List<String> getReference() throws IOException {
-        Document articleDoc = getArticleDoc(url);
+        Document articleDoc = getArticleDoc(getUrl());
         List<String> referenceLinks = new ArrayList<>();
         Elements articleContent = articleDoc.getElementsByClass("coincodex-content").select("p");
 
@@ -108,16 +99,18 @@ public class PotatoNewsArticle implements ArticleInformation {
         return referenceLinks;
     }
 
-    public String getPictureLink() {
-        if (pictureLink.contains("https://")) {
-            return pictureLink;
+    @Override
+    public String getPicture() throws StackOverflowError{
+        if (getPictureLink().contains("https://")) {
+            return getPictureLink();
         } else {
-            String trimmedLinks = pictureLink.substring(pictureLink.indexOf(",") + 1);
+            String trimmedLinks = getPictureLink().substring(getPictureLink().indexOf(",") + 1);
             byte[] decodedBytes = Base64.getDecoder().decode(trimmedLinks);
             String svgContent = new String(decodedBytes);
             return extractImageLinkFromSVG(svgContent);
         }
     }
+
     public static String extractImageLinkFromSVG(String svgCode) {
         Pattern pattern = Pattern.compile("data-u=\"(.*?)\"");
         Matcher matcher = pattern.matcher(svgCode);

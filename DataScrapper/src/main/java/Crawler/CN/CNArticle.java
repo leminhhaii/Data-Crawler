@@ -1,6 +1,6 @@
 package Crawler.CN;
 
-import Crawler.ArticleInformation;
+import Crawler.Article;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,18 +12,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CNArticle implements ArticleInformation {
-    public final String url;
-    public final String pictureLink;
-
+public class CNArticle extends Article {
     public CNArticle(String url, String pictureLink) {
-        this.url = url;
-        this.pictureLink = pictureLink;
+        super(url, pictureLink);
     }
 
-    public String getUrl() {
-        return url;
-    }
 
     @Override
     public Elements createFile(String url) throws IOException {
@@ -33,7 +26,7 @@ public class CNArticle implements ArticleInformation {
 
     @Override
     public String getCategory() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements links = article.select("div.article-tag-box.text-lg-right > a");
         StringBuilder categories = new StringBuilder();
         for (Element link : links) {
@@ -47,7 +40,7 @@ public class CNArticle implements ArticleInformation {
 
     @Override
     public String getAuthor() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements author = article.select("div.author-title > a");
         if(!author.isEmpty()){
             return author.text();
@@ -57,7 +50,7 @@ public class CNArticle implements ArticleInformation {
 
     @Override
     public String getCreationDate() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements day = article.select("div.fs-14.date-section > time");
         if(!day.isEmpty()){
             String dateText = day.text();
@@ -76,7 +69,7 @@ public class CNArticle implements ArticleInformation {
 
     @Override
     public String getContent() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         String content = "";
         Elements paragraphs = article.select("div > p");
         for (Element paragraph: paragraphs){
@@ -88,11 +81,15 @@ public class CNArticle implements ArticleInformation {
 
     @Override
     public String getTitle() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         if (!article.select("h1.mb-10").isEmpty()){
             return article.select("h1.mb-10").text();
         }
         return null;
+    }
+    @Override
+    public String getPicture() {
+        return getPictureLink();
     }
 
     @Override
@@ -107,7 +104,7 @@ public class CNArticle implements ArticleInformation {
 
     @Override
     public List<String> getReference() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements paragraphs = article.select("p");
         List<String> links = new ArrayList<>();
 

@@ -1,6 +1,6 @@
 package Crawler.BCN;
 
-import Crawler.ArticleInformation;
+import Crawler.Article;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,12 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BCNArticle  implements ArticleInformation {
-    private final String url;
-    private final String pictureLink;
+public class BCNArticle  extends Article {
     public BCNArticle(String url, String pictureLink) {
-        this.url = url;
-        this.pictureLink = pictureLink;
+        super(url,pictureLink);
     }
 
     @Override
@@ -27,7 +24,7 @@ public class BCNArticle  implements ArticleInformation {
 
     @Override
     public String getType() throws IOException {
-        Elements article = createFilehead(url);
+        Elements article = createFilehead(getUrl());
         Elements type = article.select("a.badge.text-bg-danger");
         if (!type.isEmpty()) {
             return type.text();
@@ -48,7 +45,7 @@ public class BCNArticle  implements ArticleInformation {
 
     @Override
     public String getCategory() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements links = article.select("a.btn.btn-sm.btn-primary-soft");
         StringBuilder categories = new StringBuilder();
 
@@ -65,7 +62,7 @@ public class BCNArticle  implements ArticleInformation {
 
     @Override
     public String getAuthor() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements author = article.select("a.h5.stretched-link");
         if(!author.isEmpty()){
             return author.text();
@@ -75,7 +72,7 @@ public class BCNArticle  implements ArticleInformation {
 
     @Override
     public String getCreationDate() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements day = article.select("li.list-inline-item.d-lg-block.my-lg-2");
         if(!day.isEmpty()){
             String dateText = day.text();
@@ -93,7 +90,7 @@ public class BCNArticle  implements ArticleInformation {
 
     @Override
     public String getContent() throws IOException {
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         String content = "";
         Elements paragraphs = article.select("div > p");
         for (Element paragraph: paragraphs){
@@ -103,7 +100,7 @@ public class BCNArticle  implements ArticleInformation {
         return content;
     }
     public String getTitle() throws IOException {
-        Elements article = createFilehead(url);
+        Elements article = createFilehead(getUrl());
         if (!article.select("div.col-12 > h1").isEmpty()){
             return article.select("div.col-12 > h1").text();
         }
@@ -112,7 +109,7 @@ public class BCNArticle  implements ArticleInformation {
 
     @Override
     public List<String> getReference() throws IOException{
-        Elements article = createFile(url);
+        Elements article = createFile(getUrl());
         Elements paragraphs = article.select("p");
         List<String> links = new ArrayList<>();
 
@@ -127,6 +124,11 @@ public class BCNArticle  implements ArticleInformation {
             }
         }
         return links;
+    }
+
+    @Override
+    public String getPicture() {
+        return getPictureLink();
     }
 }
 

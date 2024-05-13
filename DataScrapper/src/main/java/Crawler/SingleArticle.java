@@ -29,46 +29,4 @@ public class SingleArticle {
         this.referenceLinks = referenceLinks;
         this.pictureLink = pictureLink;
     }
-
-
-    public String getPictureLink() {
-        return pictureLink;
-    }
-
-    public String getWebsiteSource() {
-        return websiteSource;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public String getCreationDate() {
-        return creationDate;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public List<String> getReferenceLinks() {
-        return referenceLinks;
-    }
-
 }

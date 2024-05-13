@@ -18,7 +18,6 @@ public class BCNMain {
     public static void main(String[] args) throws IOException {
         String baseUrl = "https://blockchain.news";
         List<SingleArticle> abcd = new ArrayList<>();
-//        String[] newslist = new String[]{"https://blockchain.news/tag/AI/", "https://blockchain.news/tag/Bitcoin/"};
 
         for (int i = 0; i < 20; i++){
             String link = "https://blockchain.news/tag/Bitcoin/" + i;

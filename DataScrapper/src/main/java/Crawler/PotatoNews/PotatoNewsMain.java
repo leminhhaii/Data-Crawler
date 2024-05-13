@@ -37,7 +37,7 @@ public class PotatoNewsMain {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(articleList);
 
-            try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/DATA/dataPotato.json"), true))) {
+            try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/DataScrapper/DATA/dataPotato.json"), true))) {
                 writer.println(json);
 
             }
