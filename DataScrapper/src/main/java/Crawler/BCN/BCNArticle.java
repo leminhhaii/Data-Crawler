@@ -1,6 +1,6 @@
 package Crawler.BCN;
 
-import Crawler.Article;
+import Crawler.GetArticleInformation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BCNArticle  extends Article {
+public class BCNArticle  extends GetArticleInformation {
     public BCNArticle(String url, String pictureLink) {
         super(url,pictureLink);
     }

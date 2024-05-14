@@ -1,18 +1,16 @@
 package Crawler.BLog101;
 
-import Crawler.Article;
+import Crawler.GetArticleInformation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Blog101Article extends Article {
+public class Blog101Article extends GetArticleInformation {
     public Blog101Article(String url, String pictureLink) {
         super(url, pictureLink);
     }

@@ -4,12 +4,12 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.List;
 
-public class Article {
+public class GetArticleInformation {
     private final String url;
     private final String pictureLink;
 
 
-    public Article(String url, String pictureLink) {
+    public GetArticleInformation(String url, String pictureLink) {
         this.url = url;
         this.pictureLink = pictureLink;
     }

@@ -1,12 +1,11 @@
 package Crawler.PotatoNews;
 
-import Crawler.Article;
+import Crawler.GetArticleInformation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PotatoNewsArticle extends Article {
+public class PotatoNewsArticle extends GetArticleInformation {
     public PotatoNewsArticle(String url, String pictureLink) {
         super(url, pictureLink);
     }

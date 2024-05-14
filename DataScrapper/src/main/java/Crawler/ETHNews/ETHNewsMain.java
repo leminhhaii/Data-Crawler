@@ -1,6 +1,5 @@
 package Crawler.ETHNews;
 
-import Crawler.Article;
 import Crawler.Blog;
 import Crawler.SingleArticle;
 import org.jsoup.Jsoup;
