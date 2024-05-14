@@ -5,8 +5,10 @@ import Crawler.BLog101.Blog101Article;
 import Crawler.CN.CNArticle;
 import Crawler.ETHNews.ETHNewsArticle;
 import Crawler.PotatoNews.PotatoNewsArticle;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class Blog {
@@ -20,24 +22,27 @@ public class Blog {
     }
 
     public static SingleArticle getSingleArticleBlog101(String url, String pictureLink) throws IOException {
-        Blog101Article blogs = new Blog101Article(url, pictureLink);
+        Article blogs = new Blog101Article(url, pictureLink);
         return getSingleArticle(blogs);
     }
+
     public static SingleArticle getSingleArticleBCN(String url, String pictureLink) throws IOException {
-        BCNArticle blogs = new BCNArticle(url, pictureLink);
+        Article blogs = new BCNArticle(url, pictureLink);
         return getSingleArticle(blogs);
     }
+
     public static SingleArticle getSingleArticleCN(String url, String pictureLink) throws IOException {
-        CNArticle blogs = new CNArticle(url, pictureLink);
+        Article blogs = new CNArticle(url, pictureLink);
         return getSingleArticle(blogs);
     }
+
     public static SingleArticle getSingleArticleETHNews(String url, String pictureLink) throws IOException {
         Article blogs = new ETHNewsArticle(url, pictureLink);
         return getSingleArticle(blogs);
     }
 
     public static SingleArticle getSingleArticlePotatoNews(String url, String pictureLink) throws IOException {
-        PotatoNewsArticle blogs = new PotatoNewsArticle(url, pictureLink);
+        Article blogs = new PotatoNewsArticle(url, pictureLink);
         return getSingleArticle(blogs);
     }
 
@@ -54,10 +59,18 @@ public class Blog {
         List<String> referenceLink = article.getReference();
         String pictureLink = article.getPicture();
 
-        if (title != null & creationDate != null & author != null & type!= null & category != null & content != null & pictureLink != null) {
-            return new SingleArticle(websiteSource, type, title, category, author, url, creationDate, content, referenceLink, pictureLink);
+        if (title != null & creationDate != null & author != null & type != null & category != null & content != null & pictureLink != null) {
+            return new SingleArticle(url, pictureLink, websiteSource, type, title, category, author, creationDate, content,referenceLink);
         }
         return null;
     }
 
+    public static void WriteToJson(List<SingleArticle> articleList, String filename) throws FileNotFoundException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(articleList);
+
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(new File(filename), true))) {
+            writer.println(json);
+        }
+    }
 }

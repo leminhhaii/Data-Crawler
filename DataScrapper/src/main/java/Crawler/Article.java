@@ -8,6 +8,7 @@ public class Article {
     private final String url;
     private final String pictureLink;
 
+
     public Article(String url, String pictureLink) {
         this.url = url;
         this.pictureLink = pictureLink;

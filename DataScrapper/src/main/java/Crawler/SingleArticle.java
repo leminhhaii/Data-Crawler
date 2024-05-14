@@ -4,29 +4,27 @@ import java.util.List;
 
 public class SingleArticle {
 
+    private final String url;
+    private final String pictureLink;
     private final String websiteSource;
     private final String type;
     private final String title;
     private final String category;
-
     private final String author;
-    private final String link;
     private final String creationDate;
     private final String content;
     private final List<String> referenceLinks;
-    private final String pictureLink;
 
-
-    public SingleArticle(String websiteSource, String type, String title, String category, String author, String link, String creationDate, String content, List<String> referenceLinks, String pictureLink) {
+    public SingleArticle(String url, String pictureLink, String websiteSource, String type, String title, String category, String author, String creationDate, String content, List<String> referenceLinks) {
+        this.url = url;
+        this.pictureLink = pictureLink;
         this.websiteSource = websiteSource;
         this.type = type;
         this.title = title;
         this.category = category;
         this.author = author;
-        this.link = link;
         this.creationDate = creationDate;
         this.content = content;
         this.referenceLinks = referenceLinks;
-        this.pictureLink = pictureLink;
     }
 }

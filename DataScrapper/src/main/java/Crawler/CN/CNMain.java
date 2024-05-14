@@ -1,23 +1,20 @@
 package Crawler.CN;
 
+import Crawler.Article;
 import Crawler.Blog;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import Crawler.SingleArticle;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import Crawler.SingleArticle;
 
 public class CNMain {
     public static void main(String[] args) throws IOException {
         String baseUrl = "https://cryptonews.com/news/";
-        List<SingleArticle> list = new ArrayList<>();
+        List<SingleArticle> articleList = new ArrayList<>();
 
         Document document = Jsoup.connect(baseUrl).get();
         Elements nextElements = document.select("a.next.page-numbers");
@@ -31,19 +28,14 @@ public class CNMain {
                 String pictureLink = element.getElementsByTag("img").attr("src");
                 SingleArticle blog = Blog.getSingleArticleCN(link, pictureLink);
                 if (blog != null) {
-                    list.add(blog);
+                    articleList.add(blog);
                 }
             }
             String nextPage = nextElements.attr("abs:href");
             document = Jsoup.connect(nextPage).get();
             nextElements = document.select("a.next.page-numbers");
         }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(list);
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/DATA/dataCN.json"), true))) {
-            writer.println(json);
-        }
+        Blog.WriteToJson(articleList, "D:/HUST/20232/OOP/project/DataScrapper/DATA/dataCN.json");
     }
 }
 

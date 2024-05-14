@@ -1,17 +1,13 @@
 package Crawler.ETHNews;
 
+import Crawler.Article;
 import Crawler.Blog;
 import Crawler.SingleArticle;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +31,6 @@ public class ETHNewsMain {
                 }
             }
         }
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(articleList);
-
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(("D:/HUST/20232/OOP/project/DataScrapper/DATA/dataETHNews.json"), true))){
-            writer.println(json);
-        }
+        Blog.WriteToJson(articleList,"D:/HUST/20232/OOP/project/DataScrapper/DATA/dataETHNews.json");
     }
 }
