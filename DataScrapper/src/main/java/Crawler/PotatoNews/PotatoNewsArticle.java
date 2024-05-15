@@ -9,6 +9,8 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -51,7 +53,15 @@ public class PotatoNewsArticle extends GetArticleInformation {
     public String getCreationDate() throws IOException {
         Document articleDoc = getArticleDoc(getUrl());
         String tempDate = articleDoc.select(".last-modified-timestamp").text();
-        return tempDate.substring(0, tempDate.indexOf("@")).trim();
+        String dateText = tempDate.substring(0, tempDate.indexOf("@")).trim();
+        try {
+                DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
+                LocalDateTime dateTime = LocalDateTime.parse(dateText, inputFormatter);
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+                return dateTime.format(outputFormatter);
+            } catch (Exception e) {
+                return null;
+            }
     }
 
     @Override
