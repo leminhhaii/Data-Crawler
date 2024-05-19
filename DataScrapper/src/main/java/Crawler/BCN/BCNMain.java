@@ -33,7 +33,7 @@ public class BCNMain {
                 }
             }
         }
-        Blog.WriteToJson(articleList,"D:/HUST/20232/OOP/project/DataScrapper/DATA/dataBCN.json");
+        Blog.WriteToJson(articleList,"dataBCN.json");
     }
 }
 

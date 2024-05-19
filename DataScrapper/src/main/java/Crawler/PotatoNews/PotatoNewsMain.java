@@ -29,7 +29,7 @@ public class PotatoNewsMain {
                     articleList.add(blog);
                 }
             }
-            Blog.WriteToJson(articleList, "D:/HUST/20232/OOP/project/DataScrapper/DataScrapper/DATA/dataPotato.json");
+            Blog.WriteToJson(articleList, "dataPotato.json");
         }
     }
 }

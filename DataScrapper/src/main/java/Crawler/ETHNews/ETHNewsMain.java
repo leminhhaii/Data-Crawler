@@ -30,6 +30,6 @@ public class ETHNewsMain {
                 }
             }
         }
-        Blog.WriteToJson(articleList,"D:/HUST/20232/OOP/project/DataScrapper/DATA/dataETHNews.json");
+        Blog.WriteToJson(articleList,"dataETHNews.json");
     }
 }

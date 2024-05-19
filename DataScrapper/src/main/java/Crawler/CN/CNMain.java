@@ -34,7 +34,7 @@ public class CNMain {
             document = Jsoup.connect(nextPage).get();
             nextElements = document.select("a.next.page-numbers");
         }
-        Blog.WriteToJson(articleList, "D:/HUST/20232/OOP/project/DataScrapper/DATA/dataCN.json");
+        Blog.WriteToJson(articleList, "dataCN.json");
     }
 }
 

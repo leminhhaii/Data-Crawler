@@ -33,7 +33,7 @@ public class Blog101Main {
             nextElements = document.select("a.next.page-numbers");
 
         }
-        Blog.WriteToJson(articleList,"D:/HUST/20232/OOP/project/DataScrapper/DATA/data101.json");
+        Blog.WriteToJson(articleList,"data101.json");
     }
 }
 
